@@ -9,6 +9,14 @@ Polygon::Polygon() {
     shapeName = "Polygon";
 }
 
+double Polygon::pointLineDist(int p, int pL1, int pL2) {
+    double x0 = vertex[p].getXvalue(), y0 = vertex[p].getYvalue(),
+        x1 = vertex[pL1].getXvalue(), y1 = vertex[pL1].getYvalue(),
+        x2 = vertex[pL2].getXvalue(), y2 = vertex[pL2].getYvalue();
+    return abs((y2 - y1) * x0 - (x2 - x1) * y0 + x2 * y1 - y2 * x1) / sqrt((y2 - y1) * (y2 - y1) + (x2 -
+        x1) * (x2 - x1));
+}
+
 void Polygon::setPoints(double x[], double y[], int numP) {
     numPoints = numP;
     for (int i = 0; i < numPoints; i++) {
@@ -46,9 +54,7 @@ Triangle::Triangle(double x1, double y1, double x2, double y2, double x3, double
 }
 
 double Triangle::getArea() {
-    double b = vertex[0].dist(vertex[1]);
-    double h = vertex[2].height(vertex[0]);
-    return 0.5 * b * h;
+    return vertex[1].dist(vertex[2]) * pointLineDist(0, 1, 2) / 2;
 }
 
 // EQUILATERAL TRIANGLE
@@ -59,7 +65,7 @@ EQ_Triangle::EQ_Triangle(double x1, double y1, double x2, double y2, double x3, 
     double side1 = vertex[0].dist(vertex[1]);
     double side2 = vertex[1].dist(vertex[2]);
     double side3 = vertex[2].dist(vertex[0]);
-    double tolerance = 1e-6; // Small tolerance for floating point comparison
+    double tolerance = 1e-6;
 
     if (abs(side1 - side2) > tolerance || abs(side2 - side3) > tolerance) {
         cout << "Triangle is not equilateral" << endl;
@@ -75,7 +81,6 @@ R_Triangle::R_Triangle(double x1, double y1, double x2, double y2, double x3, do
     double side2 = vertex[1].dist(vertex[2]);
     double side3 = vertex[2].dist(vertex[0]);
 
-    // Sort sides to find hypotenuse (longest side)
     double a = side1, b = side2, c = side3;
     if (b > a && b > c) {
         double temp = a;
@@ -88,7 +93,6 @@ R_Triangle::R_Triangle(double x1, double y1, double x2, double y2, double x3, do
         c = temp;
     }
 
-    // Check Pythagorean theorem: a^2 = b^2 + c^2
     double tolerance = 1e-6;
     if (abs(a * a - (b * b + c * c)) > tolerance) {
         cout << "Triangle is not right" << endl;
@@ -118,9 +122,7 @@ Parallelogram::Parallelogram(double x1, double y1, double x2, double y2,
 }
 
 double Parallelogram::getArea() {
-    double b = vertex[0].dist(vertex[1]);
-    double h = vertex[3].height(vertex[0]);
-    return b * h;
+    return vertex[1].dist(vertex[2]) * pointLineDist(0, 1, 2);
 }
 
 // RECTANGLE
