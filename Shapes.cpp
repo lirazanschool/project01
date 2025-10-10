@@ -75,7 +75,8 @@ double Parallelogram::getArea() {
 	a = vertex[0].dist(vertex[1]);
 
 
-	p = vertex[0].dist(vertex[2]);
+	
+
 	
 
 		r = acos(((a * a) + (b * b) - (p * p)) / (2 * a * b));
