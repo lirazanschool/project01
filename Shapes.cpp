@@ -79,7 +79,7 @@ double Parallelogram::getArea() {
 		return a * b * sin(r);
 	
 
-	else {
+	
 		return a * b;
 	}
 }
