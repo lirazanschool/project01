@@ -77,7 +77,8 @@ double Parallelogram::getArea() {
 	if (R == 0) {
 		r = acos(((a * a) + (b * b) - (p * p)) / (2 * a * b));
 		return a * b * sin(r);
-	}
+	
+
 	else {
 		return a * b;
 	}
