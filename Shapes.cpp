@@ -70,7 +70,8 @@ Parallelogram::Parallelogram(double x1, double y1, double x2,
 	p4.setValues(x4, y4);
 }
 double Parallelogram::getArea() {
-	int a, b, p, r;
+	int a, h;
+
 	a = vertex[0].dist(vertex[1]);
 	b = vertex[0].dist(vertex[4]);
 	p = vertex[0].dist(vertex[2]);
