@@ -85,7 +85,8 @@ double Parallelogram::getArea() {
 	
 
 	
-		return a * b;
+		return a * h;
+
 	
 
 }
