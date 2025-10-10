@@ -81,7 +81,8 @@ double Parallelogram::getArea() {
 
 	
 		return a * b;
-	}
+	
+
 }
 
 Rectangle::Rectangle(double x1, double y1, double x2,
