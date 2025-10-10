@@ -73,7 +73,8 @@ double Parallelogram::getArea() {
 	int a, h;
 
 	a = vertex[0].dist(vertex[1]);
-	b = vertex[0].dist(vertex[4]);
+
+
 	p = vertex[0].dist(vertex[2]);
 	
 
